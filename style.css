@@ -1,0 +1,113 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    /* Zabraňuje horizontálnímu scrollování */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    /* Zvětšení na plnou šířku */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Pro absolutní pozicování grafu */
+}
+
+#map {
+    width: 100%;
+    height: calc(100vh - 120px);
+    min-height: 400px;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#chart-container {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 400px;
+    max-width: 40%;
+    transition: all 0.3s ease;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: white;
+    z-index: 1000;
+}
+
+.chart-hidden {
+    display: none;
+}
+
+/* Zabrání nekonečnému opakování mapy */
+.leaflet-container {
+    background-color: #fff;
+}
+
+/* Styl pro hover tooltip - přidáno zaoblení rohu a lepší stíny */
+.hover-chart-tooltip {
+    border-radius: 6px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.97);
+    max-height: 210px; /* Omezení maximální výšky */
+    pointer-events: none; /* Zajistí, že tooltip nereaguje na mouse eventy */
+}
+
+/* Responzivní design pro menší obrazovky */
+@media (max-width: 900px) {
+    #chart-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        top: auto;
+        width: calc(100% - 40px);
+        max-width: calc(100% - 40px);
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+    
+    .hover-chart-tooltip {
+        max-width: 250px; /* Užší tooltip na mobilních zařízeních */
+    }
+}
+
+/* Styly pro zavírací tlačítko grafu */
+.close-chart {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.close-chart:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
